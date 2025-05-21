@@ -16,6 +16,7 @@
             <p>
                 {{$project->summary}}
             </p> 
+            <a href="{{ route("projects.show", $project->id)}}">Visualizza</a>
             <hr>
         @endforeach
         

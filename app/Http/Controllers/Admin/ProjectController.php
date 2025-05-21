@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\PostDec;
 
 class ProjectController extends Controller
 {
@@ -37,9 +38,19 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        // prendiamo il post con un id specifico dal database
+        // modi per farlo
+
+        //1 $project = Project::where("id", $id)->get();
+
+        //2 $project = Project::where("id", $id)->first();
+
+        //3 $project = Project::find($id);
+
+        // dd($project);
+        return view("projects.show", compact("project"));
     }
 
     /**
