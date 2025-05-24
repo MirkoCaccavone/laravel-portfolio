@@ -3,6 +3,12 @@
 @section('title', "Tutti i Progetti")
 
 @section('content')
+
+<div class="d-flex py-4 gap-2">
+    <a class="btn btn-outline-primary" href="{{route('projects.create')}}">Aggiungi Nuovo Progetto</a>
+    
+</div>
+
     {{-- @dd($projects) --}}
 
     <div class="content">
