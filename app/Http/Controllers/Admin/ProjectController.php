@@ -24,7 +24,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        // Passiamo anche i tipi disponibili per il select del type
+        $types = ['E-commerce', 'Portfolio', 'Gestionale', 'Blog'];
+        $statuses = ['in progress', 'completed'];
+        return view('projects.create', compact('types', 'statuses'));
     }
 
     /**
@@ -40,6 +43,9 @@ class ProjectController extends Controller
         $newproject->client = $data['client'];
         $newproject->period = $data['period'];
         $newproject->summary = $data['summary'];
+        $newproject->type = $data['type'];
+        $newproject->status = $data['status'];
+        $newproject->project_url = $data['project_url'];
         // dd($newproject);
         $newproject->save();
 
