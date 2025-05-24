@@ -89,6 +89,10 @@ class ProjectController extends Controller
         $project->client = $data['client'];
         $project->period = $data['period'];
         $project->summary = $data['summary'];
+        $project->type = $data['type'];
+        $project->status = $data['status'];
+        $project->project_url = $data['project_url'];
+
         $project->update();
 
         return redirect()->route('projects.show', $project->id);

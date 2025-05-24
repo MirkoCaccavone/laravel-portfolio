@@ -13,6 +13,7 @@ export default defineConfig({
                 'resources/scss/show.scss',
                 'resources/scss/index.scss',
                 'resources/scss/create.scss',
+                'resources/scss/edit.scss',
                 'resources/js/app.js'],
             refresh: true,
         }),
