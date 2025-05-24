@@ -1,5 +1,11 @@
 @extends('layouts.projects')
 
+
+@section('vite')
+    @vite(['resources/scss/create.scss', 'resources/js/app.js'])
+@endsection
+
+
 @section('title')
 <div class="container py-4">
 <h1 class="mb-4">Aggiungi un nuovo progetto</h1>

@@ -1,5 +1,8 @@
 @extends('layouts.projects')
 
+@section('vite')
+    @vite(['resources/scss/index.scss', 'resources/js/app.js'])
+@endsection
 
 @section('content')
 <div class="container my-5">
