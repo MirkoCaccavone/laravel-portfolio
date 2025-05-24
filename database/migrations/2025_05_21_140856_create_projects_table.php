@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('client');
             $table->string('period');
             $table->text('summary');
+            $table->string('type')->nullable();
+            $table->string('status')->default('in progress');
+            $table->string('project_url')->nullable();
 
             $table->timestamps();
         });
