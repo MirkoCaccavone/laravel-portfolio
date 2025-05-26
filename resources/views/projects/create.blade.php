@@ -16,7 +16,7 @@
 
 <div class="container py-4">
 
-    <form action="{{ route('projects.store') }}" method="POST" class="row g-3 needs-validation" novalidate>
+    <form action="{{ route('admin.projects.store') }}" method="POST" class="row g-3 needs-validation" novalidate>
         @csrf
 
         <div class="col-md-6 form-floating">

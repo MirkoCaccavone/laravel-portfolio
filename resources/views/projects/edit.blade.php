@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <form action="{{ route('projects.update', $project->id) }}" method="POST" class="project-form">
+    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" class="project-form">
         @csrf
         @method('PUT')
 

@@ -1,20 +1,21 @@
 @extends('layouts.projects')
 
+
 @section('vite')
     @vite(['resources/scss/show.scss', 'resources/js/app.js'])
 @endsection
 
 @section('title', 'Dettaglio Progetto')
-@section('body-class', 'projects-show') {{-- Per sfondo personalizzato se vuoi usarlo --}}
+
 
 @section('content')
-<div class="project-actions d-flex justify-content-between align-items-center mb-4">
-    <a class="btn btn-outline-primary" href="{{ route('projects.index') }}">
+<div class="project-actions d-flex justify-content-between align-items-center mb-4 mt-4">
+    <a class="btn btn-outline-primary" href="{{ route('admin.projects.index') }}">
         ← Torna alla lista
     </a>
 
     <div class="d-flex gap-2">
-        <a class="btn btn-outline-warning" href="{{ route('projects.edit', $project) }}">
+        <a class="btn btn-outline-warning" href="{{ route('admin.projects.edit', $project) }}">
             ✏️ Modifica
         </a>
 
@@ -44,6 +45,14 @@
             Stato: {{ ucfirst($project->status) }}
         </span>
     @endif
+
+    @if($project->project_url)
+            <div class="project-url mt-4">
+                <a href="{{ $project->project_url }}" target="_blank" rel="noopener" class="btn ">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visita il progetto
+                </a>
+            </div>
+        @endif
 </div>
 
 <!-- Modal per la conferma eliminazione -->
@@ -60,7 +69,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
 
-                <form action="{{ route('projects.destroy', $project) }}" method="POST">
+                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="submit" class="btn btn-danger" value="Elimina Definitivamente">

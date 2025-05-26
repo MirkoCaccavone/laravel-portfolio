@@ -9,7 +9,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-5">
         <h1 class="page-title">Progetti</h1>
-        <a href="{{ route('projects.create') }}" class="btn btn-primary btn-lg shadow-btn">
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary btn-lg shadow-btn">
             <i class="bi bi-plus-circle-fill me-2"></i>Nuovo Progetto
         </a>
     </div>
@@ -47,7 +47,7 @@
                             <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     @endif
-                    <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary btn-details">
+                    <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-primary btn-details">
                         Dettagli <i class="bi bi-arrow-right-circle ms-1"></i>
                     </a>
                 </footer>

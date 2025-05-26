@@ -17,6 +17,7 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+    @yield('vite')
 </head>
 
 <body>
@@ -44,10 +45,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/projects') }}">{{ __('Projects') }}</a>
+                            @auth
+                                <a class="nav-link" href="{{ route('admin.projects.index') }}">{{ __('Home') }}</a>
+                            @else
+                                <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
+                            @endauth
                         </li>
                     </ul>
 
