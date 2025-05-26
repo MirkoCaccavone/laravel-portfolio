@@ -49,7 +49,7 @@ class ProjectController extends Controller
         // dd($newproject);
         $newproject->save();
 
-        return redirect()->route('projects.show', $newproject->id);
+        return redirect()->route('admin.projects.show', $newproject->id);
     }
 
     /**
@@ -95,7 +95,7 @@ class ProjectController extends Controller
 
         $project->update();
 
-        return redirect()->route('projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->id);
     }
 
     /**
@@ -104,6 +104,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('projects.index');
+        return redirect()->route('admin.projects.index');
     }
 }

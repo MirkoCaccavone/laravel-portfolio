@@ -3,11 +3,12 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PublicController::class, 'index']);
+Route::get('/projects/{project}', [PublicController::class, 'show'])->name('projects.show');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,11 +30,13 @@ Route::middleware((['auth', 'verified']))
 
         Route::get('/profile', [DashboardController::class, 'profile'])
             ->name('profile');
+
+        Route::resource('projects', ProjectController::class)
+            ->middleware(['auth', 'verified']);
     });
 
 
-Route::resource('projects', ProjectController::class)
-    ->middleware(['auth', 'verified']);
+
 
 
 
