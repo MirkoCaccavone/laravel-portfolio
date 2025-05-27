@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\PostDec;
 
@@ -25,7 +26,8 @@ class ProjectController extends Controller
     public function create()
     {
         // Passiamo anche i tipi disponibili per il select del type
-        $types = ['E-commerce', 'Portfolio', 'Gestionale', 'Blog'];
+        $types = Type::all();
+        // dd($types);
         $statuses = ['in progress', 'completed'];
         return view('projects.create', compact('types', 'statuses'));
     }
@@ -43,7 +45,7 @@ class ProjectController extends Controller
         $newproject->client = $data['client'];
         $newproject->period = $data['period'];
         $newproject->summary = $data['summary'];
-        $newproject->type = $data['type'];
+        $newproject->type_id = $data['type_id'];
         $newproject->status = $data['status'];
         $newproject->project_url = $data['project_url'];
         // dd($newproject);
@@ -66,7 +68,7 @@ class ProjectController extends Controller
 
         //3 $project = Project::find($id);
 
-        // dd($project);
+        // dd($project->type);
         return view("projects.show", compact("project"));
     }
 
@@ -75,7 +77,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $types = Type::all();
+
+        return view('projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -89,7 +93,7 @@ class ProjectController extends Controller
         $project->client = $data['client'];
         $project->period = $data['period'];
         $project->summary = $data['summary'];
-        $project->type = $data['type'];
+        $project->type_id = $data['type_id'];
         $project->status = $data['status'];
         $project->project_url = $data['project_url'];
 
