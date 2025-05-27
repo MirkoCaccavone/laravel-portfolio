@@ -15,7 +15,6 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $types = ['E-commerce', 'Portfolio', 'Gestionale', 'Blog'];
 
         for ($i = 0; $i < 10; $i++) {
             $newProject = new Project();
@@ -24,7 +23,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->client = $faker->name();
             $newProject->period = $faker->dateTimeBetween('2024-01-01', 'now')->format('Y-m-d');
             $newProject->summary = $faker->paragraph(4);
-            $newProject->type = $faker->randomElement($types);
+            $newProject->type_id = rand(1, 4);
             $newProject->status = $faker->randomElement(['in progress', 'completed']);
             $newProject->project_url = $faker->url;
 
