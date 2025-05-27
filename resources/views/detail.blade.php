@@ -17,7 +17,7 @@
         <div class="project-meta mb-4">
             <h4 class="mb-3">Cliente: {{ $project->client }}</h4>
             <p class="period"><i class="bi bi-calendar3"></i> {{ $project->period }}</p>
-            <p class="type"><i class="bi bi-tag"></i> {{ $project->type }}</p>
+            <p class="type"><i class="bi bi-tag"></i> {{ $project->type->name }}</p>
             <p class="status @if($project->status === 'completed') status-completed @else status-inprogress @endif">
                 <i class="bi bi-flag-fill"></i> {{ ucfirst($project->status) }}
             </p>

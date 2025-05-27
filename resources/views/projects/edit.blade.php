@@ -37,8 +37,13 @@
         </div>
 
         <div class="form-control mb-3 d-flex flex-column">
-            <label for="type">Tipo di Progetto</label>
-            <input type="text" name="type" id="type" value="{{ $project->type }}">
+            <label for="type_id">Tipo Progetto</label>
+            <select class="form-select" id="type_id" name="type_id" required>
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : ''}}>{{ $type->name }}</option>
+                @endforeach
+            </select>
+            
         </div>
 
         <div class="form-control mb-3 d-flex flex-column">

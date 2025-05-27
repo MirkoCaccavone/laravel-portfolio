@@ -38,13 +38,13 @@
         </div>
 
         <div class="col-md-6 form-floating">
-            <select class="form-select" id="type" name="type" required>
+            <select class="form-select" id="type_id" name="type_id" required>
                 <option value="" disabled selected>Seleziona il tipo</option>
                 @foreach ($types as $type)
-                    <option value="{{ $type }}">{{ $type }}</option>
+                    <option value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
             </select>
-            <label for="type">Tipo Progetto</label>
+            <label for="type_id">Tipo Progetto</label>
             <div class="invalid-feedback">Seleziona un tipo di progetto.</div>
         </div>
 

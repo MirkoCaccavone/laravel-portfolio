@@ -21,7 +21,7 @@
             <article class="project-card shadow-sm rounded">
                 <header class="project-header">
                     <h2 class="project-name">{{ $project->name }}</h2>
-                    <span class="project-type badge-type">{{ $project->type }}</span>
+                    <span class="project-type badge-type">{{ $project->type->name }}</span>
                 </header>
 
                 <div class="project-meta">

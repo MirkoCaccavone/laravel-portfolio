@@ -37,7 +37,7 @@
     <p><strong>Riassunto:</strong><br>{{ $project->summary }}</p>
 
     @if ($project->type)
-        <span class="badge bg-info text-dark me-2">Tipo: {{ $project->type }}</span>
+        <span class="badge bg-info text-dark me-2">Tipo: {{ $project->type->name }}</span>
     @endif
 
     @if ($project->status)
