@@ -68,7 +68,7 @@ class ProjectController extends Controller
 
         //3 $project = Project::find($id);
 
-        // dd($project->type);
+        dd($project->tecnologies);
         return view("projects.show", compact("project"));
     }
 
