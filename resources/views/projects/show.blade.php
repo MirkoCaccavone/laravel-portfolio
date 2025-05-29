@@ -34,6 +34,22 @@
         Periodo: {{ \Carbon\Carbon::parse($project->period)->format('d/m/Y') }}
     </span>
 
+    
+    @if (count($project->technologies) > 0)
+        <small>
+            Tecnologie: 
+       
+            @foreach ($project->technologies as $technology)
+            <span class="badge bg-primary">
+                {{$technology->name}}
+            </span>
+        @endforeach
+
+    @endif
+        
+            
+    </small>
+
     <p><strong>Riassunto:</strong><br>{{ $project->summary }}</p>
 
     @if ($project->type)
@@ -54,6 +70,9 @@
             </div>
         @endif
 </div>
+
+
+
 
 <!-- Modal per la conferma eliminazione -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

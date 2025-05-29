@@ -14,6 +14,8 @@
 
 @section('content')
 
+{{-- @dd($technologies) --}}
+
 <div class="container py-4">
 
     <form action="{{ route('admin.projects.store') }}" method="POST" class="row g-3 needs-validation" novalidate>
@@ -63,6 +65,15 @@
             <input type="url" class="form-control" id="project_url" name="project_url" placeholder="https://">
             <label for="project_url">URL Progetto (opzionale)</label>
             <div class="invalid-feedback">Inserisci un URL valido.</div>
+        </div>
+
+        {{-- checkbox per tecnologie --}}
+        <div>
+            @foreach ($technologies as $technology)
+                <input type="checkbox" name="technologies[]" value="{{$technology->id}}" id="technology-{{$technology->id}}">
+                <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                
+            @endforeach
         </div>
 
         <div class="col-12 form-floating">
