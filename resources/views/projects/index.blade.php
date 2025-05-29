@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+
+
 <div class="container my-5">
 
     <div class="d-flex justify-content-between align-items-center mb-5">
@@ -30,13 +32,29 @@
                 <div class="project-meta">
                     <p class="client"><i class="bi bi-person-circle"></i> {{ $project->client }}</p>
                     <p class="period"><i class="bi bi-calendar3"></i> {{ $project->period }}</p>
-                    <p class="status 
+                </div>
+
+                <div class="project-meta">
+                <p class="status 
                         @if($project->status === 'completed') status-completed
                         @else status-inprogress @endif">
                         <i class="bi bi-flag-fill"></i> {{ ucfirst($project->status) }}
                     </p>
                 </div>
 
+                <div class="project-meta">
+                    @if($project->technologies->count() > 0)
+                        <div class="technologies mt-2">
+                            @foreach($project->technologies as $technology)
+                                <span class="badge rounded-pill bg-secondary me-1">
+                                    {{ $technology->name }}
+                                </span>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+
+                
                 <p class="summary" title="{{ $project->summary }}">
                     {{ Str::limit($project->summary, 130) }}
                 </p>

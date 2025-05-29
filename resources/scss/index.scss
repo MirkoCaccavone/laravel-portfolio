@@ -171,6 +171,17 @@
     color: #fff;
 }
 
+.technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .badge {
+        font-size: 0.8rem;
+        padding: 0.35em 0.65em;
+    }
+}
+
 /* Responsive */
 @media (max-width: 576px) {
     .project-meta {
