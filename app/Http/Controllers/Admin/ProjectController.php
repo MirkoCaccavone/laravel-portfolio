@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\PostDec;
@@ -16,6 +17,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+
         // dd($projects);
         return view("projects.index", compact("projects"));
     }
@@ -25,11 +27,15 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        // Passiamo anche i tipi disponibili per il select del type
+        // Prendiamo i type
         $types = Type::all();
+
+        // prendiamo le tecnologie
+        $technologies = Technology::all();
+
         // dd($types);
         $statuses = ['in progress', 'completed'];
-        return view('projects.create', compact('types', 'statuses'));
+        return view('projects.create', compact('types', 'statuses', 'technologies'));
     }
 
     /**
@@ -39,6 +45,8 @@ class ProjectController extends Controller
     {
 
         $data = $request->all();
+
+        // dd($data['technologies']);
 
         $newproject = new Project();
         $newproject->name = $data['name'];
@@ -50,6 +58,10 @@ class ProjectController extends Controller
         $newproject->project_url = $data['project_url'];
         // dd($newproject);
         $newproject->save();
+
+        if ($request->has('technologies')) {
+            $newproject->technologies()->attach($data['technologies']);
+        }
 
         return redirect()->route('admin.projects.show', $newproject->id);
     }
@@ -68,7 +80,7 @@ class ProjectController extends Controller
 
         //3 $project = Project::find($id);
 
-        dd($project->tecnologies);
+        // dd($project->tecnologies);
         return view("projects.show", compact("project"));
     }
 
@@ -79,7 +91,10 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        return view('projects.edit', compact('project', 'types'));
+        // prendiamo le tecnologie
+        $technologies = Technology::all();
+
+        return view('projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -99,6 +114,13 @@ class ProjectController extends Controller
 
         $project->update();
 
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->detach();
+        }
+
+
         return redirect()->route('admin.projects.show', $project->id);
     }
 
@@ -107,6 +129,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->technologies()->detach();
         $project->delete();
         return redirect()->route('admin.projects.index');
     }
