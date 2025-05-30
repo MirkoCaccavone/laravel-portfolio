@@ -38,6 +38,9 @@
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         @endauth
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.technologies.index') }}">{{ __('Tecnologie') }}</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
